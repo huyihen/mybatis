@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GoodsTypeMapper">
+<!-- 
+	select :说明是要查询
+	id: 唯一值  唯一标识符  同一个命名空间下不能出现相同的结果类型，注意，这个类型是这个结果集合中的一条数据对应的类型
+ -->
+  <select id="findAll" resultType="map">
+    select ttid,name from ttt 
+  </select>
+  <select id="findByGid" resultType="map" parameterType="int">
+    select ttid,name from ttt where ttid=#{_parameter}
+  </select>
+  <!-- 基于实体类的查询 -->
+   <select id="finds" resultType="com.hu66.mybatis.bean.ttinfo">
+    select ttid,name from ttt 
+  </select>
+  <!-- #{}:采用预编译方式 ${}:采用字符串拼接的方法 -->
+   <insert id="add" parameterType="com.hu66.mybatis.bean.ttinfo">
+   		insert into ttt values(0,#{name})
+   </insert>
+   <insert id="add1" parameterType="com.hu66.mybatis.bean.ttinfo">
+   		insert into ttt values(0,#{name})
+   </insert>
+   <delete id="del" parameterType="int">
+   		delete from ttt where ttid =#{_parameter}
+   </delete>
+</mapper>
